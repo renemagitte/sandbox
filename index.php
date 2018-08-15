@@ -38,25 +38,27 @@
     
 <!--Post customer to database form -->
    
-    <form action="post-customer.php" method="POST" enctype="multipart/form-data">
+<!--    <form action="post-customer.php" method="POST" enctype="multipart/form-data">-->
+    <form method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
           <label for="name"> Name: </label>
-          <input type="text" name="name" class="form-control">
+          <input type="text" name="name" class="form-control" id="nameField">
         </div>
 
         <div class="form-group">
           <label for="email"> Email: </label>
-          <input type="text" name="email" class="form-control">
+          <input type="text" name="email" class="form-control" id="emailField">
         </div>
         
         <div class="form-group">
           <label for="telephone"> Telephone number: </label>
-          <input type="text" name="telephone">
+          <input type="text" name="telephone" id="telephoneField">
         </div>
 
         <div class="form-group">
-          <input type="submit" class="btn btn-primary">
+<!--          <input type="submit" class="btn btn-primary">-->
+               <button class="btn btn-primary" onClick="loadXMLDoc()">Posta ny kund</button>
         </div>
 
       </form>
@@ -103,8 +105,18 @@
     
     /* Post customer to database */
     
-    function loadXMLDoc()
-    {
+    const nameField = document.getElementById('nameField');
+    const emailField = document.getElementById('emailField');
+    const telephoneField = document.getElementById('telephoneField');  
+    
+    function loadXMLDoc() {
+        
+    
+    let name = nameField.value;
+    let email = emailField.value;
+    let telephone = telephoneField.value;
+        
+        
        var xmlhttp;
        if (window.XMLHttpRequest){
           // code for IE7+, Firefox, Chrome, Opera, Safari
