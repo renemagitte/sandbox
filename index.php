@@ -32,7 +32,37 @@
 <body>
     <div class="output"></div>
     
+<!--    Calendar -->
+   
     <div id="calendar"></div>
+    
+<!--Post customer to database form -->
+   
+    <form action="post-customer.php" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="name"> Name: </label>
+          <input type="text" name="name" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="email"> Email: </label>
+          <input type="text" name="email" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="telephone"> Telephone number: </label>
+          <input type="text" name="telephone">
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary">
+        </div>
+
+      </form>
+    
+    
+    
     
 
 <script>
@@ -65,6 +95,39 @@
     //                                 Don't wait until the request finishes to 
     //                                 continue.
     oReq.send();
+    
+    
+    
+    
+    
+    
+    /* Post customer to database */
+    
+    function loadXMLDoc()
+    {
+       var xmlhttp;
+       if (window.XMLHttpRequest){
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+       }
+       else{
+          // code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+       }
+
+       xmlhttp.onreadystatechange=function(){
+         if (xmlhttp.readyState==4 && xmlhttp.status==200)
+         {
+            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+         }
+       }
+
+       data = "name="+name+"&email="+email+"&telephone="+telephone;
+       xmlhttp.open("POST","post-customer.php",true);
+       xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+       xmlhttp.send(data);
+    }
+    
     
 
 </script>
